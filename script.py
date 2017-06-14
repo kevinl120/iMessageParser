@@ -26,11 +26,15 @@ def main():
 
     # Get messages for each contact
     for contact in contacts:
-        # print(contact)
-        # SQL query messages
+        print("Getting messages for " + contact + "...")
+
+        # SQL query get messages
         select_statement = ("SELECT is_from_me, text, datetime(date + strftime('%s', '2001-01-01 00:00:00'), 'unixepoch', 'localtime') AS date FROM message WHERE NOT is_delivered = 0 AND handle_id IN (SELECT ROWID FROM handle WHERE id = '" + contact + "') ORDER BY date;")
         cursor.execute(select_statement)
         results = cursor.fetchall()
+
+        if len(results) == 0:
+            continue
 
         # Create contact file
         file_path = './Messages/' + contact + '.txt'
@@ -46,6 +50,8 @@ def main():
                 f.write("\n")
 
     conn.close()
+
+    print("iMessage parsing complete")
 
 
 main()
