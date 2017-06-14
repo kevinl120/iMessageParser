@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 import os
 from pathlib import Path
 import sqlite3
 
 
-def main():
+def exportMessages():
     # Connect to db
     messages_db = os.path.expanduser('~') + "/Library/Messages/chat.db"
     conn = sqlite3.connect(messages_db)
@@ -53,5 +53,8 @@ def main():
 
     print("iMessage parsing complete")
 
+
+def main():
+    exportMessages()
 
 main()
