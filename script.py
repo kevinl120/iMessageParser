@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-from pathlib import Path
 import sqlite3
 
 
@@ -21,7 +20,7 @@ def exportMessages():
         contacts.add(result[0])
 
     # Create messages folder
-    path = Path('./Messages')
+    path = './Messages'
     os.makedirs(path, exist_ok=True)
 
     # Get messages for each contact
